@@ -1,0 +1,50 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  @media only screen and (max-width: 920px) {
+  flex-direction: column;
+}
+
+  .photo {
+    min-width: 350px;
+    min-height: 525px;
+    background-size: cover;
+    background-position: center center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+
+    @media only screen and (max-width: 920px) {
+      min-width: 300px;
+      min-height: 450px;
+    }
+  }
+
+  & > div {
+    padding: 2rem;
+
+    @media only screen and (max-width: 920px) {
+     max-width: 300px;
+    }
+
+    p {
+      margin: 1rem 0;
+      max-height: 300px;
+      overflow-y: scroll;
+      text-overflow: ellipsis;
+      padding: 0.5rem;
+    }
+  }
+
+  .knownFor {
+    display: flex;
+    gap: 0.5rem;
+
+    @media only screen and (max-width: 920px) {
+     display: none;
+    }
+  }
+}

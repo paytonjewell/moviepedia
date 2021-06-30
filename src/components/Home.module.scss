@@ -1,0 +1,12 @@
+.main {
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.showMovie {
+  height: calc(100vh - 125px);
+  overflow: hidden;
+}

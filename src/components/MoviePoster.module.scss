@@ -1,0 +1,60 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
+
+  .poster {
+    background-color: lightgrey;
+    width: 200px;
+    height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+    transition: all 250ms ease;
+    background-size: cover;
+    background-position: center center;
+
+    &.hover {
+      &:hover {
+        transform: scale(1.025);
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.75);
+        transition: all 250ms ease;
+      }
+    }
+
+    &.large {
+      width: 350px;
+      height: 525px;
+
+      @media only screen and (max-width: 920px) {
+        width: 275px;
+        height: 413px;
+      }
+    }
+
+    &.small {
+      width: 150px;
+      height: 225px;
+    }
+  }
+
+  p.title {
+    max-width: 130px;
+    max-height: 2.4rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+  }
+
+  p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+}

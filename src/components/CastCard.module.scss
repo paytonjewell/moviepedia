@@ -1,0 +1,31 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  transition: all 250ms ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.025);
+    transition: all 250ms ease;
+  }
+
+  .poster {
+    width: 125px;
+    height: 175px;
+    background-size: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .textInfo {
+    text-shadow: none;
+    text-align: center;
+    color: #0f0f0f;
+    max-width: 125px;
+    margin: 0.5rem 0;
+  }
+}
