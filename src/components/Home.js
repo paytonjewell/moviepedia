@@ -39,12 +39,16 @@ export default function Home(props) {
 
     return (
         <div className={classNames(Style.main, showMovie && Style.showMovie)}>
-            {searchResults.length > 0 ? searchResults.map(movie => <MoviePoster movie={movie} onClick={(movie) => onClickPoster(movie)}
-                                                                                hover={true}/>) : popularMovies.map(movie =>
-                <MoviePoster movie={movie} onClick={onClickPoster} hover={true}/>)}
+            {searchResults.length > 0 ? searchResults.map((movie, index) =>
+                <MoviePoster key={index} movie={movie}
+                             onClick={(movie) => onClickPoster(movie)}
+                             hover={true}/>) : popularMovies.map((movie, index) =>
+                <MoviePoster key={index} movie={movie} onClick={onClickPoster} hover={true}/>)}
             {showMovie &&
-            <MovieModal movie={movie} onCloseModal={() => setShowMovie(false)} onClickCastCard={(person) => onClickCastCard(person)}/>}
-            {showCast && <CastModal person={person} onCloseModal={() => setShowCast(false)} onClickMovie={(movie) => onClickMovie(movie)}/>}
+                <MovieModal movie={movie} onCloseModal={() => setShowMovie(false)}
+                            onClickCastCard={(person) => onClickCastCard(person)}/>}
+            {showCast && <CastModal person={person} onCloseModal={() => setShowCast(false)}
+                                    onClickMovie={(movie) => onClickMovie(movie)}/>}
         </div>
     );
 }

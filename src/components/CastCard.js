@@ -7,8 +7,6 @@ function CastCard(props) {
     const photoPath = person?.profile_path;
     const imageUrl = makePosterImageUrl(photoPath);
 
-    console.log('payton', photoPath)
-
     return (
         <div className={Style.main} onClick={() => onClickCastCard(person)}>
             <div className={Style.poster} style={{backgroundImage: `url(${photoPath ? imageUrl : "https://d3uscstcbhvk7k.cloudfront.net/static/images/slider-placeholder-2x.png"})`}} />

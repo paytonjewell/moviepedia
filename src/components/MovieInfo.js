@@ -15,8 +15,8 @@ function MovieInfo(props) {
     const {movie, onClickCastCard} = props;
     const genres = movie?.genres?.map(genre => genre.name);
     const genresList = genres?.join(', ');
-    const castUrl = makeRequest(`/movie/${movie.id}/credits`);
-    const streamUrl = makeRequest(`/movie/${movie.id}/watch/providers`);
+    const [castUrl, setCastUrl] = useState('')
+    const [streamUrl, setStreamUrl] = useState('');
     const [cast, setCast] = useState([]);
     const [streamers, setStreamers] = useState([]);
     const flatRate = getFromStreamers("flatrate");
@@ -36,16 +36,32 @@ function MovieInfo(props) {
     }
 
     useEffect(() => {
-        fetch(castUrl).then(resp => resp.json())
-            .then(info => {
-                const cast = info.cast;
-                const compactCast = cast?.splice(0, 5);
-                setCast(compactCast)
-            });
+        if(castUrl) {
+            fetch(castUrl).then(resp => resp.json())
+                .then(info => {
+                    const cast = info.cast;
+                    const compactCast = cast?.splice(0, 5);
+                    setCast(compactCast)
+                });
+        }
 
-        fetch(streamUrl).then(resp => resp.json())
-            .then(info => setStreamers(info?.results?.US));
+        if (streamUrl) {
+            fetch(streamUrl).then(resp => resp.json())
+                .then(info => setStreamers(info?.results?.US));
+        }
     }, [castUrl, streamUrl]);
+
+    useEffect(() => {
+        if (movie.id) {
+            setCastUrl(makeRequest(`/movie/${movie.id}/credits`))
+        }
+    }, [movie.id])
+
+    useEffect(() => {
+        if (movie.id) {
+            setStreamUrl(makeRequest(`/movie/${movie.id}/watch/providers`))
+        }
+    }, [movie.id])
 
     function runTime() {
         const hoursAndPortion = (movie?.runtime / 60).toString().split('.');
@@ -67,16 +83,16 @@ function MovieInfo(props) {
                     <p>{movie.overview}</p>
                 </div>
                 <div className={Style.whereTos}>
-                    {disney && <img src={disneyPlus} className={Style.disney} />}
-                    {netflix && <img src={netflixLogo} />}
-                    {hbo && <img src={hboMaxLogo} />}
-                    {amazon && <img src={amazonLogo} />}
-                    {googlePlay && <img src={googlePlayLogo} />}
-                    {youtube && <img src={youtubeLogo} />}
-                    {vudu && <img src={vuduLogo} />}
+                    {disney && <img alt={'disney plus logo'} src={disneyPlus} className={Style.disney} />}
+                    {netflix && <img alt={'netflix logo'} src={netflixLogo} />}
+                    {hbo && <img alt={'hbo max logo'} src={hboMaxLogo} />}
+                    {amazon && <img alt={'amazon logo'} src={amazonLogo} />}
+                    {googlePlay && <img alt={'google play logo'} src={googlePlayLogo} />}
+                    {youtube && <img alt={'youtube logo'} src={youtubeLogo} />}
+                    {vudu && <img alt={'vudu logo'} src={vuduLogo} />}
                 </div>
                 <div className={Style.cast}>
-                    {cast?.map(person => <CastCard person={person} onClickCastCard={onClickCastCard}/>)}
+                    {cast?.map((person, index) => <CastCard key={index} person={person} onClickCastCard={onClickCastCard}/>)}
                 </div>
             </div>
         </div>
