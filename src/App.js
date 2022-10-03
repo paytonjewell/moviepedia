@@ -4,7 +4,7 @@ import TopBar from "./components/TopBar";
 import Home from "./components/Home";
 
 export function makeRequest(specs) {
-  return `https://api.themoviedb.org/3${specs}?api_key=4d91796accee221c06cb109a9805be7e`;
+  return `https://api.themoviedb.org/3${specs}?api_key=${process.env.REACT_APP_API_KEY}`;
 }
 
 export function makePosterImageUrl(posterPath) {
